@@ -1,8 +1,10 @@
-db = db.getSiblingDB('store')
-db.createUser({
-    user: 'appUser', // Замените на желаемое имя пользователя
-    pwd: 'root34', // Замените на желаемый пароль
-    roles: [
-      { role: 'readWrite', db: 'store' }
-    ]
-})
+db = db.getSiblingDB('book_store');
+
+
+db.createCollection('book');
+db.myCollection.insertMany([
+  { name: "book1", costs: 3000 },
+  { name: "book2", costs: 2500 }
+]);
+
+
