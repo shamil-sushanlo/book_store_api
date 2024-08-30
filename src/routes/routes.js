@@ -1,9 +1,9 @@
 import express from "express";
-import getBook from "../controllers/book_Controller.js";
+import postBookController from "../controllers/BookController.js";
 const router = express.Router()
 
-router.get('/', getBook)
-router.get('/books/id',)
-router.post('books',)
+router.get('/books', postBookController.get)
+router.get('/books/:id',postBookController.getOne)
+router.post('/books', postBookController.create)
 
 export default router
