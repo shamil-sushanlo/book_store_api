@@ -20,7 +20,6 @@ const dbName = process.env.MONGO_DB_NAME;
 const mongoURI = `mongodb://${username}:${password}@${hostdb}:${port}/book_store?authSource=admin`;
 
 mongoose.connect(mongoURI).then(()=>{
-    console.log('connected to MongoDB')
     const server = http.createServer(app)
 
     server.listen(PORT, hostAPI, ()=>{

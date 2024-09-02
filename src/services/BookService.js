@@ -1,30 +1,21 @@
-import Book from "../models/book.js";
+import Book from "../models/book-model.js";
 
-class BookService{
-    async create(book) {
-          const createBook = await Book.create(book)
-          return createBook
-        }
-    
-      async get(req, res) {
-        try {
-          const books = await Book.find();
-          return res.json(books);
-        } catch (err) {
-          res.status(500).json(err);
-        }
-      }
-      async getOne(req, res) {
-        try {
-          const { id } = req.params;
-          const book = await Book.findById(id);
-          if (!book) {
-            return res.json("id не найдет");
-          }
-          return res.json(book);
-        } catch (err) {
-          res.status(500).json(err);
-        }
-      }
+class BookService {
+  async create(book) {
+    const createBook = await Book.create(book);
+    return createBook;
+  }
+
+  async get() {
+      const books = await Book.find();
+      return books;
+  }
+  async getOne(id) {
+    if (!id) {
+      throw new Error("не указан");
+    }
+    const bookID = await Book.findById(id);
+    return bookID;
+  }
 }
-export default new BookService()
+export default new BookService();

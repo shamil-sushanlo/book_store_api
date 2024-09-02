@@ -1,4 +1,4 @@
-import Book from "../models/book.js";
+import Book from "../models/book-model.js";
 import BookService from "../services/BookService.js";
 
 class BookController {
@@ -12,7 +12,7 @@ class BookController {
   }
   async get(req, res) {
     try {
-      const books = await Book.find();
+      const books = await BookService.get();
       return res.json(books);
     } catch (err) {
       res.status(500).json(err);
@@ -20,12 +20,8 @@ class BookController {
   }
   async getOne(req, res) {
     try {
-      const { id } = req.params;
-      const book = await Book.findById(id);
-      if (!book) {
-        return res.json("id не найдет");
-      }
-      return res.json(book);
+      const book = await BookService.getOne(req.params.id)
+      return res.json(book)
     } catch (err) {
       res.status(500).json(err);
     }
